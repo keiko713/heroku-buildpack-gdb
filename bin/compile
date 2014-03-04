@@ -1,0 +1,33 @@
+#! /bin/bash
+
+set -e
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+arrow() {
+  sed -u 's/^/-----> /'
+}
+
+echo "Installing gdb" | arrow
+echo "Download package" | indent
+
+PACKAGE_PATH="https://s3-ap-northeast-1.amazonaws.com/keiko-bucket/96bd0a18-7748-47a7-a460-b30dc7b4cbb6.tgz"
+LOCATION=$BUILD_DIR/gdb
+
+mkdir -p $LOCATION
+curl $PACKAGE_PATH -s -o - | tar xzf - -C $LOCATION
+
+echo "Download complited" | indent
+
+echo "Adding paths" | arrow
+
+mkdir -p $BUILD_DIR/.profile.d
+PROFILE_PATH=$BUILD_DIR/.profile.d/gdb.sh
+
+echo "export PATH=\"\$HOME/gdb/bin:\$PATH\"" > $PROFILE_PATH
+echo "export LD_RUN_PATH=\"$HOME/gdb/lib:\$LD_RUN_PATH\"" > $PROFILE_PATH
