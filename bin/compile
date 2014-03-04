@@ -30,4 +30,3 @@ mkdir -p $BUILD_DIR/.profile.d
 PROFILE_PATH=$BUILD_DIR/.profile.d/gdb.sh
 
 echo "export PATH=\"\$HOME/gdb/bin:\$PATH\"" > $PROFILE_PATH
-echo "export LD_RUN_PATH=\"$HOME/gdb/lib:\$LD_RUN_PATH\"" >> $PROFILE_PATH
