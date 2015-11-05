@@ -25,7 +25,7 @@ LOCATION=$BUILD_DIR/vendor/gdb
 mkdir -p $LOCATION
 curl $PACKAGE_PATH -s -o - | tar xzf - -C $LOCATION
 
-echo "Download complited" | indent
+echo "Download completed" | indent
 
 echo "Adding path" | arrow
 
